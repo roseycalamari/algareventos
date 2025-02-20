@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Produção - Refeições | Algareventos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Algareventos Logo" class="logo">
+            <h1>Ficha de Produção - Refeições</h1>
+        </div>
+        
+        <form id="production-sheet-form">
+            <div class="main-info">
+                <div class="form-group">
+                    <label for="product-name">Designação do produto:</label>
+                    <input type="text" id="product-name" name="product-name" required list="food-suggestions" autocomplete="off">
+                    <datalist id="food-suggestions">
+                        <option value="Arroz Doce">
+                        <option value="Bacalhau à Brás">
+                        <option value="Caldo Verde">
+                        <option value="Pastel de Nata">
+                        <option value="Sardinha Assada">
+                        <option value="Francesinha">
+                    </datalist>
+                </div>
+                
+                <div class="form-group">
+                    <label for="production-date">Data de fabrico:</label>
+                    <input type="date" id="production-date" name="production-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity-produced">Quantidade produzida:</label>
+                    <input type="number" id="quantity-produced" name="quantity-produced" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lot-number">Lote:</label>
+                    <input type="text" id="lot-number" name="lot-number" required>
+                </div>
+            </div>
+
+            <div class="raw-materials-section">
+                <h2>Matérias-Primas</h2>
+                <table id="raw-materials-table">
+                    <thead>
+                        <tr>
+                            <th>Matéria Prima</th>
+                            <th>Lote de Matéria-Prima</th>
+                            <th>Validade de Matéria-Prima</th>
+                            <th>Quantidade em Kg</th>
+                            <th>Responsável pelo preenchimento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="raw-materials-body">
+                        <tr>
+                            <td><input type="text" name="raw-material"></td>
+                            <td><input type="text" name="raw-material-lot"></td>
+                            <td><input type="date" name="raw-material-validity"></td>
+                            <td><input type="number" name="raw-material-quantity" step="0.01"></td>
+                            <td><input type="text" name="responsible"></td>
+                            <td><button type="button" class="remove-row">Remover</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="table-actions">
+                    <button type="button" id="add-row-btn">Adicionar Linha</button>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="button" id="save-btn">Guardar Ficha</button>
+                <button type="button" id="export-btn">Exportar</button>
+                <button type="button" id="clear-btn">Limpar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="credits">
+        Criado por Ruben Rosa
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
