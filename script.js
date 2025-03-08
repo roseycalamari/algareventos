@@ -6,43 +6,6 @@ const recipeIngredients = {
         { name: "Açúcar", quantity: 0.2, unit: "quilos" },
         { name: "Canela em Pó", quantity: 0.01, unit: "quilos" },
         { name: "Casca de Limão", quantity: 0.02, unit: "quilos" }
-    ],
-    "Bacalhau à Brás": [
-        { name: "Bacalhau Desfiado", quantity: 0.5, unit: "quilos" },
-        { name: "Batata Palha", quantity: 0.3, unit: "quilos" },
-        { name: "Ovos", quantity: 6, unit: "unidades" },
-        { name: "Cebola", quantity: 0.1, unit: "quilos" },
-        { name: "Salsa Picada", quantity: 0.02, unit: "quilos" },
-        { name: "Azeite", quantity: 0.05, unit: "litros" }
-    ],
-    "Caldo Verde": [
-        { name: "Batata", quantity: 0.3, unit: "quilos" },
-        { name: "Couve", quantity: 0.2, unit: "quilos" },
-        { name: "Chouriço", quantity: 0.1, unit: "quilos" },
-        { name: "Cebola", quantity: 0.1, unit: "quilos" },
-        { name: "Alho", quantity: 0.02, unit: "quilos" },
-        { name: "Azeite", quantity: 0.05, unit: "litros" }
-    ],
-    "Pastel de Nata": [
-        { name: "Massa Folhada", quantity: 0.3, unit: "quilos" },
-        { name: "Leite", quantity: 0.2, unit: "litros" },
-        { name: "Ovos", quantity: 3, unit: "unidades" },
-        { name: "Açúcar", quantity: 0.15, unit: "quilos" },
-        { name: "Canela", quantity: 0.01, unit: "quilos" }
-    ],
-    "Sardinha Assada": [
-        { name: "Sardinhas", quantity: 12, unit: "unidades" },
-        { name: "Azeite", quantity: 0.05, unit: "litros" },
-        { name: "Pão", quantity: 0.2, unit: "quilos" },
-        { name: "Salsa", quantity: 0.02, unit: "quilos" }
-    ],
-    "Francesinha": [
-        { name: "Pão", quantity: 0.2, unit: "quilos" },
-        { name: "Linguiça", quantity: 0.1, unit: "quilos" },
-        { name: "Fiambre", quantity: 0.1, unit: "quilos" },
-        { name: "Queijo", quantity: 0.1, unit: "quilos" },
-        { name: "Molho de Tomate", quantity: 0.1, unit: "litros" },
-        { name: "Cerveja", quantity: 0.05, unit: "litros" }
     ]
 };
 
@@ -109,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </select>
                 </div>
             </td>
-            <td><input type="text" name="responsible" value="Equipa de Produção"></td>
+            <td><input type="text" name="responsible" value="Sónia Rosa" readonly></td>
             <td><button type="button" class="remove-row">Remover</button></td>
         `;
         
@@ -416,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (material.validity) {
                     newRow.querySelector('input[name="raw-material-validity"]').value = material.validity;
                 }
-                newRow.querySelector('input[name="responsible"]').value = material.responsible || 'Equipa de Produção';
+                // No need to set responsible as it's always "Sónia Rosa"
             });
         } else {
             // Add an empty row if no materials
