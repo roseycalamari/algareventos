@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Produção - Refeições | Algareventos</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -52,7 +55,7 @@
                             <th>Matéria Prima</th>
                             <th>Lote de Matéria-Prima</th>
                             <th>Validade de Matéria-Prima</th>
-                            <th>Quantidade em Kg</th>
+                            <th>Quantidade</th>
                             <th>Responsável pelo preenchimento</th>
                             <th>Ações</th>
                         </tr>
@@ -61,8 +64,25 @@
                         <tr>
                             <td><input type="text" name="raw-material"></td>
                             <td><input type="text" name="raw-material-lot"></td>
-                            <td><input type="date" name="raw-material-validity"></td>
-                            <td><input type="number" name="raw-material-quantity" step="0.01"></td>
+                            <td>
+                                <div class="validity-input-container">
+                                    <div class="validity-toggle">
+                                        <input type="checkbox" id="validity-toggle-initial" class="validity-checkbox">
+                                        <label for="validity-toggle-initial" class="validity-label">Sem data de validade</label>
+                                    </div>
+                                    <input type="date" name="raw-material-validity">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quantity-input-container">
+                                    <input type="number" name="raw-material-quantity" step="0.01">
+                                    <select name="raw-material-unit">
+                                        <option value="quilos">quilos</option>
+                                        <option value="litros">litros</option>
+                                        <option value="unidades">unidades</option>
+                                    </select>
+                                </div>
+                            </td>
                             <td><input type="text" name="responsible"></td>
                             <td><button type="button" class="remove-row">Remover</button></td>
                         </tr>
@@ -75,7 +95,7 @@
 
             <div class="actions">
                 <button type="button" id="save-btn">Guardar Ficha</button>
-                <button type="button" id="export-btn">Exportar</button>
+                <button type="button" id="export-btn">Exportar PDF</button>
                 <button type="button" id="clear-btn">Limpar</button>
             </div>
         </form>
