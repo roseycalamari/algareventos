@@ -113,13 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <td><button type="button" class="remove-row">Remover</button></td>
         `;
         
-        // Remove row functionality
+        // Remove row functionality - always allow removal
         const removeBtn = newRow.querySelector('.remove-row');
         removeBtn.addEventListener('click', () => {
-            if (rawMaterialsBody.children.length > 1) {
-                rawMaterialsBody.removeChild(newRow);
-            } else {
-                alert('Deve haver pelo menos uma linha de matéria-prima.');
+            rawMaterialsBody.removeChild(newRow);
+            
+            // If there are no rows left, add an empty one
+            if (rawMaterialsBody.children.length === 0) {
+                addTableRow();
             }
         });
         
@@ -288,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productNameInput.addEventListener('input', autoFillIngredients);
     productNameInput.addEventListener('change', autoFillIngredients);
 
-    // Add row button
+    // Add row button - add as many rows as needed
     addRowBtn.addEventListener('click', () => {
         addTableRow();
     });
@@ -311,6 +312,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Collect raw materials data
         const rawMaterials = [];
         const rows = rawMaterialsBody.querySelectorAll('tr');
+        
+        // Skip validation if no rows
+        if (rows.length === 0) {
+            alert('Por favor, adicione pelo menos uma matéria-prima.');
+            return;
+        }
         
         // Validate raw materials
         let isValidMaterials = true;
@@ -367,16 +374,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset the form
         form.reset();
         
-        // Clear raw materials rows except the first one
-        while (rawMaterialsBody.children.length > 1) {
-            rawMaterialsBody.removeChild(rawMaterialsBody.lastChild);
-        }
+        // Clear all rows
+        rawMaterialsBody.innerHTML = '';
         
-        // Reset the first row's inputs
-        const firstRow = rawMaterialsBody.querySelector('tr');
-        firstRow.querySelectorAll('input').forEach(input => {
-            input.value = '';
-        });
+        // Add a single empty row
+        addTableRow();
     });
 
     // Load last saved production sheet on page load
@@ -400,18 +402,28 @@ document.addEventListener('DOMContentLoaded', () => {
         rawMaterialsBody.innerHTML = ''; 
 
         // Populate raw materials
-        lastSheet.rawMaterials.forEach(material => {
-            const newRow = addTableRow({
-                name: material.name || '',
-                unit: material.unit || 'quilos',
-                quantity: material.quantity || '',
-                hasValidity: material.hasValidity
+        if (lastSheet.rawMaterials && lastSheet.rawMaterials.length > 0) {
+            lastSheet.rawMaterials.forEach(material => {
+                const newRow = addTableRow({
+                    name: material.name || '',
+                    unit: material.unit || 'quilos',
+                    quantity: material.quantity || '',
+                    hasValidity: material.hasValidity
+                });
+                
+                // Populate additional fields
+                newRow.querySelector('input[name="raw-material-lot"]').value = material.lot || generateLotNumber();
+                if (material.validity) {
+                    newRow.querySelector('input[name="raw-material-validity"]').value = material.validity;
+                }
+                newRow.querySelector('input[name="responsible"]').value = material.responsible || 'Equipa de Produção';
             });
-            
-            // Populate additional fields
-            newRow.querySelector('input[name="raw-material-lot"]').value = material.lot || generateLotNumber();
-            newRow.querySelector('input[name="raw-material-validity"]').value = material.validity || generateValidityDate();
-            newRow.querySelector('input[name="responsible"]').value = material.responsible || 'Equipa de Produção';
-        });
+        } else {
+            // Add an empty row if no materials
+            addTableRow();
+        }
+    } else {
+        // Add an empty row if no saved sheets
+        addTableRow();
     }
 });
