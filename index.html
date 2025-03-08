@@ -38,7 +38,14 @@
                 
                 <div class="form-group">
                     <label for="quantity-produced">Quantidade produzida:</label>
-                    <input type="number" id="quantity-produced" name="quantity-produced" step="0.01" required>
+                    <div class="quantity-produced-container">
+                        <input type="number" id="quantity-produced" name="quantity-produced" step="0.01" required>
+                        <select id="quantity-produced-unit" name="quantity-produced-unit">
+                            <option value="Containers">Containers</option>
+                            <option value="Unidades">Unidades</option>
+                            <option value="Travessas de Vidro">Travessas de Vidro</option>
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="form-group">

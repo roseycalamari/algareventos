@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const productName = document.getElementById('product-name').value;
             const productionDate = document.getElementById('production-date').value;
             const quantityProduced = document.getElementById('quantity-produced').value;
+            const quantityUnit = document.getElementById('quantity-produced-unit').value;
             const lotNumber = document.getElementById('lot-number').value;
             
             // Validate main form fields
@@ -203,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const startY = 45;
             doc.text(`Designação do produto: ${productName}`, 20, startY);
             doc.text(`Data de fabrico: ${productionDate}`, 20, startY + 10);
-            doc.text(`Quantidade produzida: ${quantityProduced}`, 20, startY + 20);
+            doc.text(`Quantidade produzida: ${quantityProduced} ${quantityUnit}`, 20, startY + 20);
             doc.text(`Lote: ${lotNumber}`, 20, startY + 30);
             
             // Collect raw materials data
@@ -298,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const productName = document.getElementById('product-name').value;
         const productionDate = document.getElementById('production-date').value;
         const quantityProduced = document.getElementById('quantity-produced').value;
+        const quantityUnit = document.getElementById('quantity-produced-unit').value;
         const lotNumber = document.getElementById('lot-number').value;
 
         // Validate main form fields
@@ -343,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             productName,
             productionDate,
             quantityProduced,
+            quantityUnit,
             lotNumber,
             rawMaterials,
             timestamp: new Date().toISOString()
@@ -385,6 +388,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('product-name').value = lastSheet.productName || '';
         document.getElementById('production-date').value = lastSheet.productionDate || '';
         document.getElementById('quantity-produced').value = lastSheet.quantityProduced || '';
+        
+        // Set quantity unit if available
+        if (lastSheet.quantityUnit) {
+            document.getElementById('quantity-produced-unit').value = lastSheet.quantityUnit;
+        }
+        
         document.getElementById('lot-number').value = lastSheet.lotNumber || '';
 
         // Clear existing rows
