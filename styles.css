@@ -188,11 +188,6 @@ button {
     color: white;
 }
 
-#clear-btn {
-    background: linear-gradient(145deg, #f44336, #ef5350);
-    color: white;
-}
-
 .remove-row {
     background: linear-gradient(145deg, #FF6B6B, #FF8A80);
     color: white;
@@ -229,7 +224,6 @@ button:active {
     font-size: 0.9rem;
 }
 
-/* New styles for validity checkbox */
 .validity-input-container {
     display: flex;
     flex-direction: column;
@@ -251,7 +245,6 @@ button:active {
     color: var(--text-color);
 }
 
-/* New styles for the quantity input and unit dropdown */
 .quantity-input-container {
     display: flex;
     align-items: center;
@@ -272,8 +265,6 @@ button:active {
     background: rgba(255,255,255,0.8);
     font-size: 14px;
 }
-
-/* Add this to your existing CSS styles */
 
 .quantity-produced-container {
     display: flex;
@@ -305,6 +296,63 @@ button:active {
         0 4px 6px rgba(0,0,0,0.1);
 }
 
+/* New styles for recipe management */
+#save-recipe-btn {
+    background: linear-gradient(145deg, #4CAF50, #81C784);
+    color: white;
+    margin-top: 20px;
+}
+
+#recipe-list-container {
+    background: rgba(255,255,255,0.6);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+#recipe-list-container h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.saved-recipe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.saved-recipe:last-child {
+    border-bottom: none;
+}
+
+.saved-recipe button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.load-recipe-btn {
+    background: linear-gradient(145deg, #2196F3, #64B5F6);
+}
+
+.delete-recipe-btn {
+    background: linear-gradient(145deg, #f44336, #ef5350);
+}
+
+input[type="month"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    font-size: 16px;
+}
+
 @media (max-width: 768px) {
     .quantity-produced-container {
         flex-direction: column;
@@ -316,4 +364,114 @@ button:active {
         width: 100%;
         margin: 5px 0;
     }
+}
+
+/* New Tabs Styles */
+.tabs {
+    display: flex;
+    background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: rgba(255,255,255,0.2);
+    box-shadow: inset 0 -3px 0 0 white;
+}
+
+.tab-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.tab-content {
+    display: none;
+    padding: 30px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Recipes Tab Styles */
+.recipes-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.recipes-list-section,
+.recipe-details-section {
+    background: rgba(255,255,255,0.6);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.saved-recipes-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.saved-recipe-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saved-recipe-item:hover {
+    background-color: rgba(77, 166, 255, 0.1);
+}
+
+.saved-recipe-item.active {
+    background-color: rgba(77, 166, 255, 0.2);
+}
+
+.recipe-details {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.recipe-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recipe-details-ingredients {
+    margin-top: 20px;
+}
+
+.recipe-details-ingredients table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recipe-details-ingredients th,
+.recipe-details-ingredients td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.recipe-details-ingredients th {
+    background-color: var(--primary-color);
+    color: white;
 }
